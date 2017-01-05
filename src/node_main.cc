@@ -60,13 +60,13 @@ int main(int argc, char *argv[]) {
   // Node removes elements from that array but can't pass back updates to
   // argc, effectively corrupting it.
   char *local_argv[argc+1];
-  for( int i = 0; i < argc; i++ ) {
+  for (int i = 0; i < argc; i++) {
     local_argv[i] = argv[i];
   }
   local_argv[argc] = nullptr;
   return node::Start(argc, local_argv);
 #else
   return node::Start(argc, argv);
-#endif // _AIX
+#endif  // _AIX
 }
 #endif
