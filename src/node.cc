@@ -4503,6 +4503,8 @@ inline int Start(uv_loop_t* event_loop,
   params.code_event_handler = vTune::GetVtuneCodeEventHandler();
 #endif
 
+  TRACE_EVENT_INSTANT0("node", "node::Start", TRACE_EVENT_SCOPE_PROCESS);
+
   Isolate* const isolate = Isolate::New(params);
   if (isolate == nullptr)
     return 12;  // Signal internal error.

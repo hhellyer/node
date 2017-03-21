@@ -181,6 +181,21 @@ double DefaultPlatform::MonotonicallyIncreasingTime() {
 
 uint64_t DefaultPlatform::AddTraceEvent(
     char phase, const uint8_t* category_enabled_flag, const char* name,
+    const char* scope, uint64_t id, uint64_t bind_id, int32_t num_args,
+    const char** arg_names, const uint8_t* arg_types,
+    const uint64_t* arg_values, unsigned int flags) {
+    if (tracing_controller_) {
+        return tracing_controller_->AddTraceEvent(phase, category_enabled_flag,
+                name, scope, id, bind_id, num_args, arg_names, arg_types,
+                arg_values, nullptr, flags);
+    }
+
+    return 0;
+}
+
+
+uint64_t DefaultPlatform::AddTraceEvent(
+    char phase, const uint8_t* category_enabled_flag, const char* name,
     const char* scope, uint64_t id, uint64_t bind_id, int num_args,
     const char** arg_names, const uint8_t* arg_types,
     const uint64_t* arg_values,
